@@ -66,10 +66,9 @@ def tv_shows():
 ############################
 @app.route('/dogs')
 def dog_breeds():
-    dogs=requests.get( "https://dog.ceo/dog-api/documentation/")
-    parsed_dogs=json.loads(dogs)
-    print(dogs.content)
-    return render_template('dogs.html', dogs=dogs)
+    dogs_unparsed=requests.get( "https://dog.ceo/api/breeds/list/all")
+    parsed_dogs=json.loads(dogs_unparsed.content)
+    return render_template('dogs.html', dogs=parsed_dogs)
 
 if __name__ == '__main__':
     app.run(debug=True)
